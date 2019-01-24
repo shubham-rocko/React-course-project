@@ -50,13 +50,16 @@ class App extends Component {
     let person = null;
 
     if (this.state.showPersons) {
-      person = (<div>
-                   <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
-                   <Person name={this.state.persons[1].name} age={this.state.persons[1].age} 
-                   clicked={this.switchNameHandler.bind(this, "Shubham!")}
-                   changed={this.nameChangedHandler}>My hobbie: Racing</Person>
-                   <Person name={this.state.persons[2].name} age={this.state.persons[2].age} />
-                 </div>);
+      person = (
+        <div>
+          {this.state.persons.map((person) => {
+            return <Person
+             name={person.name}
+             age={person.age}
+            />
+          })}
+        </div>
+        );
     }
 
     return (
@@ -64,7 +67,7 @@ class App extends Component {
         <h3>React project</h3>
         <p>It's really working</p>
         <button style={style}
-        onClick={this.toggleNameHandler}> Switch Name </button>
+        onClick={this.toggleNameHandler}> Toggle Person </button>
        {person}
       </div>
     );
