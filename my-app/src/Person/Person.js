@@ -1,12 +1,11 @@
 import React from "react";
 
-import "./Person.css";
+import classes from "./Person.css";
 
 const person = props => {
-  const style = {};
 
   return (
-    <div className="Person" style={style}>
+    <div className={classes.Person}>
       <p onClick={props.clicked}>
         Hi I'm {props.name} and I'm {props.age} years old.
       </p>
