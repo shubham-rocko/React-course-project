@@ -4,6 +4,11 @@ import classes from "./Person.css";
 
 const person = props => {
 
+  var random = Math.random();
+  if(random > 10){
+    throw new Error('Something went wrong');
+  }
+
   return (
     <div className={classes.Person}>
       <p onClick={props.clicked}>

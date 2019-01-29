@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import classes from "./App.css";
 import Person from "./Person/Person.js";
+import ErrorBoundary from "./ErrorBoundary/error-boundary";
 
 class App extends Component {
   state = {
@@ -50,20 +51,21 @@ class App extends Component {
 
   render() {
     let person = null;
-    let btnClass = '';
+    let btnClass = "";
 
     if (this.state.showPersons) {
       person = (
         <div>
           {this.state.persons.map((person, index) => {
             return (
-              <Person
-                name={person.name}
-                age={person.age}
-                key={person.id}
-                clicked={() => this.deletePersonHandler(index)}
-                changed={event => this.nameChangedHandler(event, person.id)}
-              />
+              <ErrorBoundary key={person.id}>
+                <Person
+                  name={person.name}
+                  age={person.age}
+                  clicked={() => this.deletePersonHandler(index)}
+                  changed={event => this.nameChangedHandler(event, person.id)}
+                />
+              </ErrorBoundary>
             );
           })}
         </div>
@@ -73,24 +75,22 @@ class App extends Component {
 
     let assignedClasses = [];
     if (this.state.persons.length <= 2) {
-      assignedClasses.push( classes.red );
+      assignedClasses.push(classes.red);
     }
     if (this.state.persons.length <= 1) {
-      assignedClasses.push( classes.bold );
+      assignedClasses.push(classes.bold);
     }
 
     return (
-        <div className={classes.App}>
-          <h3>Angular project</h3>
-          <p className={assignedClasses.join(" ")}>It's really working</p>
-          <button 
-          className={btnClass}
-          onClick={this.toggleNameHandler}>
-            {" "}
-            Toggle Person{" "}
-          </button>
-          {person}
-        </div>
+      <div className={classes.App}>
+        <h3>Angular project</h3>
+        <p className={assignedClasses.join(" ")}>It's really working</p>
+        <button className={btnClass} onClick={this.toggleNameHandler}>
+          {" "}
+          Toggle Person{" "}
+        </button>
+        {person}
+      </div>
     );
   }
 }
