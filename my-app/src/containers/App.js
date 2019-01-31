@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import classes from "./App.css";
 import Persons from "../components/Persons/Persons";
+import Cockpit from "../components/Cockpit/Cockpit";
 
 class App extends Component {
   state = {
@@ -50,37 +51,22 @@ class App extends Component {
 
   render() {
     let person = null;
-    let btnClass = "";
 
     if (this.state.showPersons) {
-      person = (
-        <div>
-          <Persons 
+      person = (<Persons 
           persons={this.state.persons}
           clicked={this.deletePersonHandler}
           changed={this.nameChangedHandler}
           />
-        </div>
       );
-      btnClass = classes.red;
-    }
-
-    let assignedClasses = [];
-    if (this.state.persons.length <= 2) {
-      assignedClasses.push(classes.red);
-    }
-    if (this.state.persons.length <= 1) {
-      assignedClasses.push(classes.bold);
     }
 
     return (
       <div className={classes.App}>
-        <h3>Angular project</h3>
-        <p className={assignedClasses.join(" ")}>It's really working</p>
-        <button className={btnClass} onClick={this.toggleNameHandler}>
-          {" "}
-          Toggle Person{" "}
-        </button>
+        <Cockpit
+         showPersons={this.state.showPersons}
+         persons = {this.state.persons}
+         clicked = {this.toggleNameHandler}/>
         {person}
       </div>
     );
