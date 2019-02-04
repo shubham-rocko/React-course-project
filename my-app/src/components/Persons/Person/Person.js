@@ -1,23 +1,19 @@
-import React from "react";
+import React, {Component} from "react";
 
 import classes from "./Person.css";
 
-const person = props => {
-
-  var random = Math.random();
-  if(random > 10){
-    throw new Error('Something went wrong');
+class Person extends Component{
+  render() {    
+      return (
+        <div className={classes.Person}>
+          <p onClick={this.props.clicked}>
+            Hi I'm {this.props.name} and I'm {this.props.age} years old.
+          </p>
+          <p>{this.props.children}</p>
+          <input type="text" onChange={this.props.changed} value={this.props.name} />
+        </div>
+      );
   }
+}
 
-  return (
-    <div className={classes.Person}>
-      <p onClick={props.clicked}>
-        Hi I'm {props.name} and I'm {props.age} years old.
-      </p>
-      <p>{props.children}</p>
-      <input type="text" onChange={props.changed} value={props.name} />
-    </div>
-  );
-};
-
-export default person;
+export default Person;
