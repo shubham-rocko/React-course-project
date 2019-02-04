@@ -68,10 +68,14 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
 
-### Component life cycle
+### 1:) Component life cycle
 
 constructor() ==> componentWillMount() ==> render() ==> Child_Life_Cycle_Functions ==> componentDidMount() ==> componentWillUnmount()
 
-### Component life cycle update (triggered by Parent)
+### 2:) Component life cycle update (triggered by Parent)
 
 componentWillreceiveProps(nextProps) ==> shouldComponentUpdate(nextProps, nextState) ==> componentWillUpdate(nextProps, nextState) ===> render() ==> Update_Child_Component_Props ==> componentDidUpdate()
+
+### 3:) component life cycle update (triggered by Internal Change)
+
+shouldComponentUpdate(nextProps, nextState) ==> componentWillUpdate() ==> render() ==> Update_Child_Component_Props ==> componentDidUpdate()
