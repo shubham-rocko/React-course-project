@@ -1,23 +1,38 @@
-import React from "react";
+import React, {Component} from "react";
 
 import classes from "./Person.css";
 
-const person = props => {
+class Person extends Component{
 
-  var random = Math.random();
-  if(random > 10){
-    throw new Error('Something went wrong');
+  constructor(props) {
+    super(props);
+    console.log('[Person.js] Inside Constructor', this.props);  
   }
 
-  return (
-    <div className={classes.Person}>
-      <p onClick={props.clicked}>
-        Hi I'm {props.name} and I'm {props.age} years old.
-      </p>
-      <p>{props.children}</p>
-      <input type="text" onChange={props.changed} value={props.name} />
-    </div>
-  );
-};
+  componentWillMount(){
+    console.log('[Person.js] Inside componentWillMount()');
+  }
+  
+  componentDidMount(){
+    console.log('[Person.js] Inside componentDidMount()');
+  }
 
-export default person;
+  componentWillUnmount(){
+    console.log('[Person.js] Inside componentWillUnmount()');
+  }
+
+  render() {    
+    console.log('[Person.js] Inside render()')
+      return (
+        <div className={classes.Person}>
+          <p onClick={this.props.clicked}>
+            Hi I'm {this.props.name} and I'm {this.props.age} years old.
+          </p>
+          <p>{this.props.children}</p>
+          <input type="text" onChange={this.props.changed} value={this.props.name} />
+        </div>
+      );
+  }
+}
+
+export default Person;

@@ -66,3 +66,12 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+### Component life cycle
+
+constructor() ==> componentWillMount() ==> render() ==> Child_Life_Cycle_Functions ==> componentDidMount() ==> componentWillUnmount()
+
+### Component life cycle update (triggered by Parent)
+
+componentWillreceiveProps(nextProps) ==> shouldComponentUpdate(nextProps, nextState) ==> componentWillUpdate(nextProps, nextState) ===> render() ==> Update_Child_Component_Props ==> componentDidUpdate()
